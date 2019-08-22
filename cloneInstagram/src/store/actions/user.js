@@ -49,6 +49,7 @@ export const createUser = user => {
                           }))
                       })
                       .then(() => {
+                          //Se deu tudo certo no registro, ja efetua o login
                           dispatch(login(user))
                       })
               }

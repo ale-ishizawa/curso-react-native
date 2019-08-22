@@ -12,7 +12,7 @@ export const addPost = post => {
       dispatch(creatingPost())
       axios({
           url: 'uploadImage',
-          baseURL: 'https://us-central1-lambe-bedee.cloudfunctions.net',
+          baseURL: 'https://us-central1-lambe-f09cb.cloudfunctions.net',
           method: 'post',
           data: {
               image: post.image.base64

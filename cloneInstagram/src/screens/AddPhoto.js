@@ -15,9 +15,9 @@ class AddPhoto extends Component {
   state = {
     image: null,
     comment: '',
-  }
+}
 
-  componentDidUpdate = prevProps => {
+componentDidUpdate = prevProps => {
     if (prevProps.loading && !this.props.loading) {
         this.setState({
             image: null,
@@ -27,40 +27,40 @@ class AddPhoto extends Component {
     }
 }
 
-  pickImage = () => {
+pickImage = () => {
     if (!this.props.name) {
-      Alert.alert('Falha!', noUser)
-      return
+        Alert.alert('Falha!', noUser)
+        return
     }
 
     ImagePicker.showImagePicker({
-      title: 'Escolha a imagem',
-      maxHeight: 600,
-      maxWidth: 800
+        title: 'Escolha a imagem',
+        maxHeight: 600,
+        maxWidth: 800
     }, res => {
-      if (!res.didCancel) {
-        this.setState({ image: { uri: res.uri, base64: res.data } })
-      }
+        if (!res.didCancel) {
+            this.setState({ image: { uri: res.uri, base64: res.data } })
+        }
     })
-  }
+}
 
-  save = async () => {
+save = async () => {
     if (!this.props.name) {
-      Alert.alert('Falha!', noUser)
-      return
+        Alert.alert('Falha!', noUser)
+        return
     }
 
     this.props.onAddPost({
-      id: Math.random(),
-      nickname: this.props.name,
-      email: this.props.email,
-      image: this.state.image,
-      comments: [{
+        id: Math.random(),
         nickname: this.props.name,
-        comment: this.state.comment
-      }]
+        email: this.props.email,
+        image: this.state.image,
+        comments: [{
+            nickname: this.props.name,
+            comment: this.state.comment
+        }]
     })
-  }
+}
 
   render() {
     return (
@@ -129,11 +129,11 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ user, posts }) => {
   return {
     email: user.email,
     name: user.name,
-
+    loading: posts.isUploading
   }
 }
 
